@@ -1,0 +1,131 @@
+.notification{
+    --success: #38a169;
+    --error: #e53e3e;
+    --info: #3182ce;
+    --warning: #dd6b20;
+    --question: #805ad5;
+    --color-one: #fff;
+    --color-two: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 4.6rem;
+    transition: 500ms;
+}
+
+.notification.hidden{
+    min-height: 0;
+}
+
+.notification.hidden{
+    display: none;
+}
+
+.notification.notification-success{
+    background-color: var(--success);
+}
+
+.notification.notification-error{
+    background-color: var(--error);
+}
+
+.notification.notification-info{
+    background-color: var(--info);
+}
+
+.notification.notification-warning{
+    background-color: var(--warning);
+}
+
+.notification.notification-question{
+    background-color: var(--question);
+}
+
+.notification > .notification-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-one);
+}
+
+.notification .notification-body header,
+.notification .notification-body footer{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 3rem;
+    height: 100%;
+}
+
+.notification .notification-body header{
+    justify-content: flex-end;
+}
+
+.notification .notification-body footer{
+    justify-content: flex-start;
+}
+
+.notification .notification-body main{
+    width: calc(100% - 6rem);
+    padding: 1rem;
+}
+
+.notification .notification-message a{
+    color: var(--color-two);
+}
+
+.notification .notification-icon{
+    font-size: 2rem;
+}
+
+.notification footer .notification-icon{
+    font-size: 1rem;
+    transition: 500ms;
+}
+
+.notification footer a{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.notification footer a:hover .notification-icon{
+    color: var(--color-two);
+}
+
+.no-text{
+    font-size: 0;
+}
+
+/* * MD */
+@media(min-width: 768px){
+    .notification > .notification-body{
+        width: fit-content;
+        min-width: 25%;
+        max-width: 85%;
+    }
+
+    .notification footer a{
+        justify-content: flex-start;
+    }
+}
+
+
+/* LG */
+@media(min-width: 1024px){
+    .notification > .notification-body{
+        max-width: 75%;
+    }
+}
+
+
+/* XL */
+@media(min-width: 1200px){
+    .notification > .notification-body{
+        max-width: 65%;
+    }
+}
