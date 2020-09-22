@@ -4,8 +4,8 @@
     --info: #3182ce;
     --warning: #dd6b20;
     --question: #805ad5;
-    --color-one: #fff;
-    --color-two: #222;
+    --notification-color-one: #fff;
+    --notification-color-two: #222;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,10 +14,7 @@
     transition: 500ms;
 }
 
-.notification.hidden{
-    min-height: 0;
-}
-
+.notification.hidden
 .notification.hidden{
     display: none;
 }
@@ -49,7 +46,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    color: var(--color-one);
+    color: var(--notification-color-one);
 }
 
 .notification .notification-body header,
@@ -65,6 +62,10 @@
     justify-content: flex-end;
 }
 
+.notification .notification-body header h2{
+    color: var(--notification-color-one);
+}
+
 .notification .notification-body footer{
     justify-content: flex-start;
 }
@@ -75,7 +76,7 @@
 }
 
 .notification .notification-message a{
-    color: var(--color-two);
+    color: var(--notification-color-two);
 }
 
 .notification .notification-icon{
@@ -91,10 +92,12 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    color: var(--notification-color-one);
+    text-decoration: none;
 }
 
 .notification footer a:hover .notification-icon{
-    color: var(--color-two);
+    color: var(--notification-color-two);
 }
 
 .no-text{
