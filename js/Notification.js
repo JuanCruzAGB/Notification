@@ -1,9 +1,21 @@
+/**
+ * * Notification makes an excellent notification.
+ * @export
+ * @class Notification
+ */
 export class Notification{
+    /**
+     * * Creates an instance of Notification.
+     * @param {object} properties - Notification properties.
+     * @param {object} status - Notification status.
+     * @param {object} ubication - Notification ubication.
+     * @memberof Notification
+     */
     constructor(properties = {
         id: 'notification-1',
         code: '200',
         message: '',
-    }, states = {
+    }, status = {
         show: false
     }, ubication = {
         element: undefined,
@@ -11,9 +23,14 @@ export class Notification{
     }){
         this.createHTML(ubication, properties.id);
         this.setProperties(properties);
-        this.setStates(states);
+        this.setStatus(status);
     }
 
+    /**
+     * * Set the Notification properties.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setProperties(properties = {
         id: 'notification-1',
         code: '200',
@@ -29,19 +46,34 @@ export class Notification{
         }
     }
 
-    setStates(states = {
+    /**
+     * * Set the Notification properties.
+     * @param {object} status - Notification status.
+     * @memberof Notification
+     */
+    setStatus(status = {
         show: false
     }){
-        this.states = {};
-        this.setShow(states);
+        this.status = {};
+        this.setShow(status);
     }
 
+    /**
+     * * Set the Notification ID.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setId(properties = {
         id: 'notification-1',
     }){
         this.properties.id = properties.id;
     }
 
+    /**
+     * * Set the Notification code.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setCode(properties = {
         code: '200',
     }){
@@ -68,6 +100,11 @@ export class Notification{
         }
     }
 
+    /**
+     * * Set the Notification message.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setMessage(properties = {
         message: '',
     }){
@@ -75,23 +112,38 @@ export class Notification{
         this.message.innerHTML = this.properties.message;
     }
 
+    /**
+     * * Set the Notification URL.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setUrl(properties = {
         url: '/',
     }){
         this.properties.url = properties.url;
     }
 
+    /**
+     * * Set the Notification method.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setMethod(properties = {
         method: 'GET',
     }){
         this.properties.method = properties.method;
     }
 
-    setShow(states = {
+    /**
+     * * Set the Notification show status.
+     * @param {object} status - Notification status.
+     * @memberof Notification
+     */
+    setShow(status = {
         show: false
     }){
-        this.states.show = states.show;
-        if(this.states.show){
+        this.status.show = status.show;
+        if(this.status.show){
             if(this.html.classList.contains('hidden')){
                 this.html.classList.remove('hidden');
             }
@@ -100,6 +152,12 @@ export class Notification{
         }
     }
 
+    /**
+     * * Create the Notification HTML Element.
+     * @param {object} ubication - Notification ubication.
+     * @param {string} id - Notification ID.
+     * @memberof Notification
+     */
     createHTML(ubication = {
         element: undefined,
         insertBefore: 0
@@ -115,7 +173,7 @@ export class Notification{
                 header.classList.add('notification-header');
                 main.appendChild(header);
                     let h2 = document.createElement('h2');
-                    h2.classList.add('no-text');
+                    h2.classList.add('no-text', 'mb-0');
                     header.appendChild(h2);
                         this.icon = document.createElement('i');
                         this.icon.classList.add('notification-icon', 'fas');
@@ -125,6 +183,7 @@ export class Notification{
                 content.classList.add('notification-message');
                 main.appendChild(content);
                     this.message = document.createElement('p');
+                    this.message.classList.add('mb-0');
                     content.appendChild(this.message);
 
                 
@@ -146,6 +205,10 @@ export class Notification{
         });
     }
 
+    /**
+     * * Remove the Notification class list.
+     * @memberof Notification
+     */
     removeClassList(){
         if(this.html.classList.contains('notification-success')){
             this.html.classList.remove('notification-success');
@@ -169,18 +232,31 @@ export class Notification{
         }
     }
 
+    /**
+     * * Set the success Notification.
+     * @memberof Notification
+     */
     setSuccessType(){
         this.removeClassList();
         this.html.classList.add('notification-success');
         this.icon.classList.add('fa-check-circle');
     }
 
+    /**
+     * * Set the information Notification.
+     * @memberof Notification
+     */
     setInfoType(){
         this.removeClassList();
         this.html.classList.add('notification-info');
         this.icon.classList.add('fa-circle-info');
     }
 
+    /**
+     * * Set the question Notification.
+     * @param {object} properties - Notification properties.
+     * @memberof Notification
+     */
     setQuestionType(properties = {
         method: 'GET',
         url: '/',
@@ -215,12 +291,20 @@ export class Notification{
         });
     }
 
+    /**
+     * * Set the warning Notification.
+     * @memberof Notification
+     */
     setWarningType(){
         this.removeClassList();
         this.html.classList.add('notification-warning');
         this.icon.classList.add('fa-exclamation-triangle');
     }
 
+    /**
+     * * Set the error Notification.
+     * @memberof Notification
+     */
     setErrorType(){
         this.removeClassList();
         this.html.classList.add('notification-error');
