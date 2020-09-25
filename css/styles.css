@@ -115,7 +115,7 @@
 }
 
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     .notification > .notification-body{
         max-width: 75%;
@@ -123,7 +123,7 @@
 }
 
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     .notification > .notification-body{
         max-width: 65%;
