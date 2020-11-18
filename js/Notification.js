@@ -97,6 +97,9 @@ export class Notification{
             case 404:
                 this.setErrorType();
                 break;
+            case 500:
+                this.setErrorType();
+                break;
         }
     }
 
