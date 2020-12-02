@@ -289,6 +289,9 @@ export class Notification{
             case 404:
                 this.properties.type = 'error';
                 break;
+            case 500:
+                this.setErrorType();
+                break;
         }
     }
 
@@ -436,7 +439,7 @@ export class Notification{
                 header.classList.add('notification-header');
                 main.appendChild(header);
                     let h2 = document.createElement('h2');
-                    h2.classList.add('no-text');
+                    h2.classList.add('no-text', 'mb-0');
                     header.appendChild(h2);
                         h2.appendChild(this.getIcon().getHTML());
 
