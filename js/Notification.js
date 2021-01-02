@@ -1,4 +1,4 @@
-// ? Local repository
+// ? NotificationJS repository
 import { Form } from "./Form.js";
 import { Icon } from "./Icon.js";
 
