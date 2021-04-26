@@ -1,134 +1,147 @@
-.notification{
+:root {
     --success: #38a169;
     --error: #e53e3e;
     --info: #3182ce;
     --warning: #dd6b20;
     --question: #805ad5;
-    --notification-color-one: #fff;
-    --notification-color-two: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 4.6rem;
-    transition: 500ms;
+    --notification-color: #222;
+    --notification-close-color: #fff;
+    --notification-close-hover: #222;
 }
 
-.notification.hidden
-.notification.hidden{
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    width: fit-content;
+    min-width: 50%;
+    min-height: 4.6rem;
+    transition: 500ms;
+    border-radius: .25rem;
+}
+
+.notification.center {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.notification.left {
+    left: 1rem;
+    right: initial;
+}
+
+.notification.center.left {
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.notification.top {
+    top: 1rem;
+    bottom: initial;
+}
+
+.notification.center.top {
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.notification.right {
+    right: 1rem;
+    left: initial;
+}
+
+.notification.center.right {
+    left: initial;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.notification.bottom {
+    bottom: 1rem;
+    top: initial;
+}
+
+.notification.center.bottom {
+    top: initial;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.notification.hidden {
     display: none;
 }
 
-.notification.notification-success{
+.notification.notification-success {
     background-color: var(--success);
 }
 
-.notification.notification-error{
+.notification.notification-error {
     background-color: var(--error);
 }
 
-.notification.notification-info{
+.notification.notification-info {
     background-color: var(--info);
 }
 
-.notification.notification-warning{
+.notification.notification-warning {
     background-color: var(--warning);
 }
 
-.notification.notification-question{
+.notification.notification-question {
     background-color: var(--question);
 }
 
-.notification > .notification-body{
+.notification .notification-header {
     display: flex;
-    flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    color: var(--notification-color-one);
+    font-size: 1.5rem;
 }
 
-.notification .notification-body header,
-.notification .notification-body footer{
+.notification .notification-message {
+    grid-column: span 3 / span 3;
+    color: var(--notification-color);
+    padding: 0 1rem;
+}
+
+.notification .notification-footer {
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 3rem;
-    height: 100%;
+    justify-content: center;
+    align-content: center;
 }
 
-.notification .notification-body header{
-    justify-content: flex-end;
-}
-
-.notification .notification-body header h2{
-    color: var(--notification-color-one);
-}
-
-.notification .notification-body footer{
-    justify-content: flex-start;
-}
-
-.notification .notification-body main{
-    width: calc(100% - 6rem);
-    padding: 1rem;
-}
-
-.notification .notification-message a{
-    color: var(--notification-color-two);
-}
-
-.notification .notification-icon{
-    font-size: 2rem;
-}
-
-.notification footer .notification-icon{
-    font-size: 1rem;
+.notification .notification-footer a {
     transition: 500ms;
+    color: var(--notification-close-color);
 }
 
-.notification footer a{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    color: var(--notification-color-one);
-    text-decoration: none;
+.notification .notification-footer a:hover {
+    color: var(--notification-close-color-hover);
 }
 
-.notification footer a:hover .notification-icon{
-    color: var(--notification-color-two);
-}
-
-.no-text{
-    font-size: 0;
-}
-
-/* * MD */
-@media(min-width: 768px){
-    .notification > .notification-body{
-        width: fit-content;
+/* ? MD */
+@media (min-width: 768px) {
+    .notification {
         min-width: 25%;
-        max-width: 85%;
-    }
-
-    .notification footer a{
-        justify-content: flex-start;
     }
 }
 
 
-/* * LG */
-@media(min-width: 1024px){
-    .notification > .notification-body{
-        max-width: 75%;
-    }
+/* ? LG */
+@media (min-width: 1024px) {
+    /*  */
 }
 
 
-/* * XL */
-@media(min-width: 1200px){
-    .notification > .notification-body{
-        max-width: 65%;
-    }
+/* ? XL */
+@media (min-width: 1200px) {
+    /*  */
 }
