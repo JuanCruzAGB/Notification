@@ -15,7 +15,7 @@ let defaultProps = {
 
 /** @var {object} defaultState Default state. */
 let defaultState = {
-    show: false
+    open: false
 };
 
 /**
@@ -34,7 +34,7 @@ export class Notification extends Class {
      * @param {string} [props.message=':D'] Notification message.
      * @param {string} [props.classes] Notification class names.
      * @param {object} [state] Notification state:
-     * @param {boolean} [state.show=false] Notification show status.
+     * @param {boolean} [state.open=false] Notification open state.
      * @memberof Notification
      */
     constructor (props = {
@@ -43,7 +43,7 @@ export class Notification extends Class {
         message: ':D',
         classes: [],
     }, state = {
-        show: false
+        open: false
     }) {
         super({ ...defaultProps, ...props }, { ...defaultState, ...state });
         if (this.props.code === 300) {
@@ -130,7 +130,7 @@ export class Notification extends Class {
         if (this.checkQuestionType()) {
             this.setForm();
         }
-        this.checkShowStatus();
+        this.checkOpenState();
     }
 
     /**
@@ -148,16 +148,12 @@ export class Notification extends Class {
     }
 
     /**
-     * * Check the show status.
+     * * Check the open state.
      * @memberof Notification
      */
-    checkShowStatus () {
-        if (this.state.show) {
-            if (this.html.classList.contains('hidden')) {
-                this.html.classList.remove('hidden');
-            }
-        } else {
-            this.html.classList.add('hidden');
+    checkOpenState () {
+        if (this.state.open) {
+            this.open();
         }
     }
 
@@ -174,6 +170,7 @@ export class Notification extends Class {
             this.html.classList.add(className);
         }
         this.html.classList.add(`notification-${ this.props.type }`, 'hidden');
+        this.html.innerHTML = '';
         this.createHeader();
         this.createBody();
         this.createFooter();
@@ -212,11 +209,41 @@ export class Notification extends Class {
             this.footer.appendChild(this.buttons.close);
             this.buttons.close.addEventListener('click', function (e) {
                 e.preventDefault();
-                instance.html.parentNode.removeChild(instance.html);
+                instance.switch();
             });
                 let icon = document.createElement('i');
                 icon.classList.add('notification-icon', 'fas', 'fa-times');
                 this.buttons.close.appendChild(icon);
+    }
+
+    /**
+     * * Switch the open Notification state.
+     * @memberof Notification
+     */
+    switch () {
+        if (this.state.open) {
+            this.close();
+        } else {
+            this.open();
+        }
+    }
+
+    /**
+     * * Open the Notification.
+     * @memberof Notification
+     */
+    open () {
+        this.setState('open', true);
+        this.html.classList.remove('hidden');
+    }
+
+    /**
+     * * Close the Notification.
+     * @memberof Notification
+     */
+    close () {
+        this.setState('open', false);
+        this.html.classList.add('hidden');
     }
 }
 
