@@ -15,7 +15,9 @@ let defaultProps = {
 
 /** @var {object} defaultState Default state. */
 let defaultState = {
-    open: false
+    open: false,
+    appendChild: false,
+    insertBefore: false,
 };
 
 /**
@@ -35,6 +37,8 @@ export class Notification extends Class {
      * @param {string} [props.classes] Notification class names.
      * @param {object} [state] Notification state:
      * @param {boolean} [state.open=false] Notification open state.
+     * @param {HTMLElement} [state.insertBefore=false] Notification html insert before to.
+     * @param {HTMLElement} [state.appendChild=false] Notification html append to.
      * @memberof Notification
      */
     constructor (props = {
@@ -43,7 +47,9 @@ export class Notification extends Class {
         message: ':D',
         classes: [],
     }, state = {
-        open: false
+        open: false,
+        appendChild: false,
+        insertBefore: false,
     }) {
         super({ ...defaultProps, ...props }, { ...defaultState, ...state });
         if (this.props.code === 300) {
@@ -158,6 +164,26 @@ export class Notification extends Class {
     }
 
     /**
+     * * Check the append HTML Element state.
+     * @memberof Notification
+     */
+    checkAppendChildState () {
+        if (this.state.appendChild) {
+            this.state.appendChild.appendChild(this.html);
+        }
+    }
+
+    /**
+     * * Check the insert before HTML Element state.
+     * @memberof Notification
+     */
+    checkInsertBeforeState () {
+        if (this.state.insertBefore) {
+            this.state.insertBefore.parentNode.insertBefore(this.html, this.state.insertBefore);
+        }
+    }
+
+    /**
      * * Makes the Notification HTML Element.
      * @param {object} [ubication] Notification ubication:
      * @param {HTMLElement} [ubication.element] Notification parent node.
@@ -165,7 +191,15 @@ export class Notification extends Class {
      * @memberof Notification
      */
     createHTML () {
-        this.setHTML(document.querySelector(`#${ this.props.id }.notification`));
+        if (document.querySelector(`#${ this.props.id }.notification`)) {
+            this.setHTML(document.querySelector(`#${ this.props.id }.notification`));
+        } else {
+            this.html = document.createElement('aside');
+            this.html.id = this.props.id;
+            this.html.classList.add('notification');
+            this.checkAppendChildState();
+            this.checkInsertBeforeState();
+        }
         for (const className of this.props.classes) {
             this.html.classList.add(className);
         }
