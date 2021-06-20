@@ -5,21 +5,6 @@ import Class from "../../JuanCruzAGB/js/Class.js";
 import Form from "./Form.js";
 import Icon from "./Icon.js";
 
-/** @var {object} defaultProps Default properties. */
-let defaultProps = {
-    id: 'notification-1',
-    code: 200,
-    message: ':D',
-    classes: [],
-};
-
-/** @var {object} defaultState Default state. */
-let defaultState = {
-    open: false,
-    appendChild: false,
-    insertBefore: false,
-};
-
 /**
  * * Notification makes an excellent notification.
  * @export
@@ -51,7 +36,7 @@ export class Notification extends Class {
         appendChild: false,
         insertBefore: false,
     }) {
-        super({ ...defaultProps, ...props }, { ...defaultState, ...state });
+        super({ ...Notification.props, ...props }, { ...Notification.state, ...state });
         if (this.props.code === 300) {
             this.setProps('url', (props.hasOwnProperty('url') ? props.url : '/'));
             this.setProps('method', (props.hasOwnProperty('method') ? props.method : 'GET'));
@@ -279,6 +264,27 @@ export class Notification extends Class {
         this.setState('open', false);
         this.html.classList.add('hidden');
     }
+
+    /**
+     * @static
+     * @var {object} props Default properties.
+     */
+    static props = {
+        id: 'notification-1',
+        code: 200,
+        message: ':D',
+        classes: [],
+    };
+    
+    /**
+     * @static
+     * @var {object} state Default state.
+     */
+    static state = {
+        open: false,
+        appendChild: false,
+        insertBefore: false,
+    };
 }
 
 // ? Notification childs
