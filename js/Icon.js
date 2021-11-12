@@ -17,7 +17,7 @@ let defaultState = {
  * @export
  * @class Icon.
  * @extends Class
- * @author Juan Cruz Armentia <juancarmentia@gmail.com>
+ * @author Juan Cruz Armentia <juan.cruz.armentia@gmail.com>
  */
 export class Icon extends Class {
     /**
